@@ -1,7 +1,7 @@
 package app;
 
 import java.util.ArrayList;
-
+import java.io.*;
 public class Bank {
 	// Variable for logging/not logging
 	private static final boolean LOG = true;
@@ -75,9 +75,41 @@ public class Bank {
 		return account.balance;
 	}
 
+	public void transfer(int fromAccount, int toAccount, int amount) {
+		Account from = findAccount(fromAccount);
+		Account to = findAccount(toAccount);
+		if(from.balance >= amount)
+		{
+			from.balance -= amount;
+			to.balance += amount;
+			log("Successfully transfered $" + amount + " from " + from + " to " + to);
+		}
+		else if(to == from)
+		{
+			System.out.println("Can't transfer money to your own account");
+		}
+		else
+		{
+			log("Insufficient funds in " + from);
+		}
+	}
+	
 	public void saveAccounts(String filename) {
 		// TODO
-		log("Save not yet implemented.");
+		try {
+			FileWriter fw = new FileWriter(filename);
+			
+			for(Account a: accounts)
+			{
+				fw.append(accounts.toString())
+			}
+			
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log("Accounts are Saved");
 	}
 
 	public void loadAccounts(String filename) {

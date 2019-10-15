@@ -39,13 +39,13 @@ public class Main {
 			int accountNumber = 0;
 			if(respond.equals("yes"))
 			{
-				boolean userActive = true;
-				while(userActive)
-				{
 				System.out.println("What is your account number?");
 				Scanner input2 = new Scanner(System.in);
 				accountNumber = input2.nextInt();
-				System.out.println("What would you like to do? (deposit (1), withdraw (2), close account (3), check balance (4), leave (5)");
+				boolean userActive = true;
+				while(userActive)
+				{
+				System.out.println("What would you like to do? (deposit (1), withdraw (2), close account (3), check balance (4), transfer(5), leave (6))");
 				Scanner input3 = new Scanner(System.in);
 				String respond2 = input3.nextLine();
 				if(respond2.equals("1"))
@@ -64,7 +64,7 @@ public class Main {
 				}
 				else if(respond2.equals("3"))
 				{
-					System.out.println("Are you sure you want to close your account?");
+					System.out.println("Are you sure you want to close your account? (yes/no)");
 					Scanner closeAccount = new Scanner(System.in);
 					String close = closeAccount.nextLine();
 					if(close.equals("yes"))
@@ -77,6 +77,16 @@ public class Main {
 					bank.checkBalance(accountNumber);
 				}
 				else if(respond2.equals("5"))
+				{
+					System.out.println("What is the account number that you want to transfer the money to?");
+					Scanner accNum = new Scanner(System.in);
+					int toAccount = accNum.nextInt();
+					System.out.println("How much money would you like to transfer?");
+					Scanner ammount2 = new Scanner(System.in);
+					int amount = ammount2.nextInt();
+					bank.transfer(accountNumber, toAccount, amount);
+				}
+				else if(respond2.equals("6"))
 				{
 					System.out.println("Bye");
 					userActive = false;
