@@ -31,6 +31,7 @@ public class Main {
 	public static void menu(Bank bank)
 	{
 		boolean bankRunning = true;
+		bank.loadAccounts("AccountData");
 		while(bankRunning)
 		{
 			System.out.println("Hello, do you already have an account? (yes/no)");	
@@ -88,7 +89,8 @@ public class Main {
 				}
 				else if(respond2.equals("6"))
 				{
-					System.out.println("Bye");
+					System.out.println("Bye!");
+					bank.saveAccounts("AccountData");
 					userActive = false;
 				}
 			}
@@ -103,6 +105,7 @@ public class Main {
 					System.out.println("What would you like to name your account?");
 					Scanner input4 = new Scanner(System.in);
 					bank.createAccount(input4.nextLine());
+					bank.saveAccounts("AccountData");
 				}
 				else
 				{
