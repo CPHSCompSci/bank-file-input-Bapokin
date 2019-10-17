@@ -120,10 +120,7 @@ public class Bank {
 			{
 				String line = fileInput.nextLine();
 				String[] lineInfo = line.split("::");
-				for(String s: lineInfo)
-				{
-					System.out.println(s);
-				}
+				
 				int accountNum = Integer.parseInt(lineInfo[0].substring(1));
 				String accName = lineInfo[1];
 				int balance = Integer.parseInt(lineInfo[2].substring(1,lineInfo[2].length()-1));
