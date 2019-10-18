@@ -101,7 +101,7 @@ public class Bank {
 			
 			for(Account a: accounts)
 			{
-				fw.append(a.toString());
+				fw.append(a.toString() + "\n");
 			}
 			
 			fw.close();
